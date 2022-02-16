@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="https://chir.ag/projects/ntc/ntc.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" type="text/css" href="style.css">
+    	<title>Colours :)</title>
+    </head> 
+    <body>
+        <h1>Colour Picker</h1>
+
+    <div>
+        <button onclick="changeBackground(6)">Generate Colour</button>
+        <br>
+        <span id="hex"></span>
+        <br>
+        <span id="name"></span> 
+        <br>
+        <span id="exact"></span> 
+    </div>
+
+
+        <script type="text/javascript">
+            function changeBackground(length) {
+                var randomChars = 'ABCDEF0123456789';
+                var result = '';
+                for ( var i = 0; i < length; i++ ) {
+                    result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+                    }
+                result = ''+'#'+result+'';
+                document.body.style.background = result;
+                document.getElementById("hex").textContent=result;
+
+                var n_match = ntc.name(result);
+                  n_rgb = n_match[0]; // RGB value of closest match
+                  n_name = n_match[1]; // Text string: Color name
+                  n_exactmatch = n_match[2]; // True if exact color match
+
+                //alert(n_match);
+                document.getElementById("name").textContent=n_name;
+
+                if (n_exactmatch = 'false') {
+                    document.getElementById("exact").textContent= '';                    
+                }
+                else{
+                    document.getElementById("exact").textContent= 'Exact!';
+                }
+            }
+
+        </script>
+    </body>
+</html>
